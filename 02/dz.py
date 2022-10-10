@@ -9,7 +9,7 @@
 
 from random import randint
 
-candies = 100
+candies = 2021
 count = 0
 lst = []
 name = input('Введите имя ')
