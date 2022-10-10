@@ -9,39 +9,43 @@
 
 from random import randint
 
-candies = 2021
+candies = 100
 count = 0
+lst = []
 name = input('Введите имя ')
+lst.append(name)
+lst.append('Робот')
 
-print('Выбор игрока.')
+print('Выбор игрока...')
 p = randint(1, 2)
 
 
+def player(nam, candies):
+    print(f'Ходит {nam}...')
+    number = randint(1, 28)
+    print (f'У {nam}а {number}')
+    return number
+
+
 if p == 2:
-    print('Ходит робот')
-    robot = randint(1, 28)
-    count += robot
-    print (f'У робота {robot}')
+    num = player(lst[1], candies)
+    candies -= num
+    print(f'Осталось конфет {candies}')
 
-while count < candies:
-    try:
-       input(f'Ходит {name}\n')   
-    except SyntaxError:
-       pass
-    n = randint(1, 28)
-    print(f'У вас {n}')
-    count += n 
-    if count >= candies:
-        print(f'Выиграл {name}')
+while candies > 0:
+    num = int(input(f'{name} введите от 1 до 28\n'))
+    candies -= num
+    if candies <= 0:
+        print(f'Выиграл {lst[0]}')
         break
-    robot = randint(1, 28)
-    count += robot
-    print (f'У робота {robot}')
-    if count >= candies:
-        print('Выиграл Робот')
+    print(f'Осталось конфет {candies}')
+    num_2 = player(lst[1], int(candies))
+    candies -= num_2
+    if candies <= 0:
+        print(f'Выиграл {lst[1]}')
         break
+    print(f'Осталось конфет {candies}')
 
-    print(f'Осталось конфет {candies - count}')
         
 
         
