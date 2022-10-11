@@ -20,7 +20,7 @@ print('Выбор игрока...')
 p = randint(1, 2)
 
 
-def player(nam, candies):
+def player(nam):
     print(f'Ходит {nam}...')
     number = randint(1, 28)
     print (f'У {nam}а {number}')
@@ -28,18 +28,27 @@ def player(nam, candies):
 
 
 if p == 2:
-    num = player(lst[1], candies)
+    num = player(lst[1])
     candies -= num
     print(f'Осталось конфет {candies}')
 
 while candies > 0:
-    num = int(input(f'{name} введите от 1 до 28\n'))
+    while True:
+        num = int(input(f'{name} введите от 1 до 28\n'))
+        try:
+            if 0 < num <= 28:
+               break
+     
+            else: print('Неверное число')
+        except ValueError:
+            print('Число должно быть от 1 до 28')
+    
     candies -= num
     if candies <= 0:
         print(f'Выиграл {lst[0]}')
         break
     print(f'Осталось конфет {candies}')
-    num_2 = player(lst[1], int(candies))
+    num_2 = player(lst[1])
     candies -= num_2
     if candies <= 0:
         print(f'Выиграл {lst[1]}')
